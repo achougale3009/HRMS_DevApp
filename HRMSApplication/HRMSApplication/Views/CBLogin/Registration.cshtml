@@ -1,0 +1,63 @@
+﻿@model HRMSApplication.EDMX.CBLoginInfo
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Registration</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control col-md-4", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td>User Name</td>
+                        <td>Password</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var ListIteam in @ViewBag.ListOfCBLoginInfo)
+                    {
+                    <tr>
+                        <td>@ListIteam.UserName</td>
+                        <td>@ListIteam.Password</td>
+                        <td></td>
+                    </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+}
+

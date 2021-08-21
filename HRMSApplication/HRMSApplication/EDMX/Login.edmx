@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DreamBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CBLoginInfo">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="LoginFailedCount" Type="int" />
+          <Property Name="LoginIPAddress" Type="nvarchar" MaxLength="20" />
+          <Property Name="CustomerTimeZone" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastAccessedDate" Type="datetime" />
+          <Property Name="AccountLocked" Type="bit" />
+        </EntityType>
+        <EntityType Name="MenuMaster">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="200" />
+          <Property Name="SubmenuName" Type="nvarchar" MaxLength="200" />
+          <Property Name="MenuIcon" Type="nvarchar" MaxLength="100" />
+          <Property Name="SubmenuIcon" Type="nvarchar" MaxLength="100" />
+          <Property Name="Link" Type="nvarchar" MaxLength="300" />
+          <Property Name="SequenceNumber" Type="int" />
+        </EntityType>
+        <Function Name="GetCBLoginInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Usp_Ins_CBLoginInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Usp_Sel_CBLoginInfoList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Usp_Sel_MenuList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Usp_Sel_SubmenuList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DreamBDModelStoreContainer">
+          <EntitySet Name="CBLoginInfo" EntityType="Self.CBLoginInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuMaster" EntityType="Self.MenuMaster" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DreamBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CBLoginInfo">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="LoginFailedCount" Type="Int32" />
+          <Property Name="LoginIPAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerTimeZone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastAccessedDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountLocked" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="MenuMaster">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="MenuName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SubmenuName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MenuIcon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubmenuIcon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="SequenceNumber" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="DreamBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CBLoginInfoes" EntityType="Self.CBLoginInfo" />
+          <EntitySet Name="MenuMasters" EntityType="Self.MenuMaster" />
+          <FunctionImport Name="GetCBLoginInfo" ReturnType="Collection(String)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_Ins_CBLoginInfo" ReturnType="Collection(Int32)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_Sel_CBLoginInfoList" ReturnType="Collection(DreamBDModel.Usp_Sel_CBLoginInfoList_Result)" />
+          <FunctionImport Name="Usp_Sel_MenuList" ReturnType="Collection(DreamBDModel.Usp_Sel_MenuList_Result)">
+            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_Sel_SubmenuList" ReturnType="Collection(DreamBDModel.Usp_Sel_SubmenuList_Result)">
+            <Parameter Name="CustomerId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Usp_Sel_CBLoginInfoList_Result">
+          <Property Type="Int32" Name="CustomerId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="LastLoginDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="LoginFailedCount" Nullable="true" />
+          <Property Type="String" Name="LoginIPAddress" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="CustomerTimeZone" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="LastAccessedDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="AccountLocked" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Usp_Sel_MenuList_Result">
+          <Property Type="String" Name="MenuName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="MenuIcon" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SequenceNumber" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Usp_Sel_SubmenuList_Result">
+          <Property Type="String" Name="MenuName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="SubmenuName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="SubmenuIcon" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Link" Nullable="true" MaxLength="300" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DreamBDModelStoreContainer" CdmEntityContainer="DreamBDEntities">
+          <EntitySetMapping Name="CBLoginInfoes">
+            <EntityTypeMapping TypeName="DreamBDModel.CBLoginInfo">
+              <MappingFragment StoreEntitySet="CBLoginInfo">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LoginFailedCount" ColumnName="LoginFailedCount" />
+                <ScalarProperty Name="LoginIPAddress" ColumnName="LoginIPAddress" />
+                <ScalarProperty Name="CustomerTimeZone" ColumnName="CustomerTimeZone" />
+                <ScalarProperty Name="LastAccessedDate" ColumnName="LastAccessedDate" />
+                <ScalarProperty Name="AccountLocked" ColumnName="AccountLocked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuMasters">
+            <EntityTypeMapping TypeName="DreamBDModel.MenuMaster">
+              <MappingFragment StoreEntitySet="MenuMaster">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="SubmenuName" ColumnName="SubmenuName" />
+                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+                <ScalarProperty Name="SubmenuIcon" ColumnName="SubmenuIcon" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCBLoginInfo" FunctionName="DreamBDModel.Store.GetCBLoginInfo" />
+          <FunctionImportMapping FunctionImportName="Usp_Ins_CBLoginInfo" FunctionName="DreamBDModel.Store.Usp_Ins_CBLoginInfo" />
+          <FunctionImportMapping FunctionImportName="Usp_Sel_CBLoginInfoList" FunctionName="DreamBDModel.Store.Usp_Sel_CBLoginInfoList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DreamBDModel.Usp_Sel_CBLoginInfoList_Result">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LoginFailedCount" ColumnName="LoginFailedCount" />
+                <ScalarProperty Name="LoginIPAddress" ColumnName="LoginIPAddress" />
+                <ScalarProperty Name="CustomerTimeZone" ColumnName="CustomerTimeZone" />
+                <ScalarProperty Name="LastAccessedDate" ColumnName="LastAccessedDate" />
+                <ScalarProperty Name="AccountLocked" ColumnName="AccountLocked" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_Sel_MenuList" FunctionName="DreamBDModel.Store.Usp_Sel_MenuList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DreamBDModel.Usp_Sel_MenuList_Result">
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+                <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_Sel_SubmenuList" FunctionName="DreamBDModel.Store.Usp_Sel_SubmenuList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DreamBDModel.Usp_Sel_SubmenuList_Result">
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="SubmenuName" ColumnName="SubmenuName" />
+                <ScalarProperty Name="SubmenuIcon" ColumnName="SubmenuIcon" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

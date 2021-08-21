@@ -1,0 +1,78 @@
+﻿@model HRMSApplication.EDMX.CBLoginInfo
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Profile</h2>
+
+<div class="form-group">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastLoginDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastLoginDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginFailedCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginFailedCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginIPAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginIPAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerTimeZone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerTimeZone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastAccessedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastAccessedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountLocked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountLocked)
+        </dd>
+
+    </dl>
+</div>

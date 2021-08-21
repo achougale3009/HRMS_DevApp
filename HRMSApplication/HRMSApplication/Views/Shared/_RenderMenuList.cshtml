@@ -1,0 +1,33 @@
+﻿
+@foreach (var menu in (IEnumerable<HRMSApplication.EDMX.Usp_Sel_MenuList_Result>)ViewBag.ListOfMenuMaster)
+{
+    <li class="">
+        <a href="#" class="dropdown-toggle">
+            <i class="@menu.MenuIcon"></i>
+            <span class="menu-text">
+                @menu.MenuName
+            </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+            @foreach (var submenu in (IEnumerable<HRMSApplication.EDMX.Usp_Sel_SubmenuList_Result>)ViewBag.ListOfSubmenuMaster)
+            {
+                if (@menu.MenuName == @submenu.MenuName)
+                {
+                    <li class="">
+                        <a href=@submenu.Link>
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            @submenu.SubmenuName
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                }
+            }
+        </ul>
+    </li>
+}
